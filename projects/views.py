@@ -4,31 +4,32 @@ from .forms import ProjectForm
 
 
 def projects(request):
-    projects = searchProjects(request)
-    custom_range, projects = paginateProjects(request, projects, 6)
+    projects = Project.objects.all()
+    # projects = searchProjects(request)
+    # custom_range, projects = paginateProjects(request, projects, 6)
 
     context = {'projects': projects,
-               'search_query': search_query, 'custom_range': custom_range}
+            }
     return render(request, 'projects/projects.html', context)
 
 
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
-    form = ReviewForm()
+#     form = ReviewForm()
 
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        review = form.save(commit=False)
-        review.project = projectObj
-        review.owner = request.user.profile
-        review.save()
+#     if request.method == 'POST':
+#         form = ReviewForm(request.POST)
+#         review = form.save(commit=False)
+#         review.project = projectObj
+#         review.owner = request.user.profile
+#         review.save()
 
-        projectObj.getVoteCount
+#         projectObj.getVoteCount
 
-        messages.success(request, 'Your review was successfully submitted!')
-        return redirect('project', pk=projectObj.id)
+#         messages.success(request, 'Your review was successfully submitted!')
+#         return redirect('project', pk=projectObj.id)
 
-    return render(request, 'projects/single-project.html', {'project': projectObj, 'form': form})
+    return render(request, 'projects/single-project.html', {'project': projectObj,})
 
 def createProject(request):
     form = ProjectForm()
@@ -43,27 +44,27 @@ def createProject(request):
     return render(request, "projects/project_form.html", context)
 
 
-def updateProject(request, pk):
+# def updateProject(request, pk):
     
-    project = Project.objects.get(id=pk)
-    form = ProjectForm(instance=project)
-    if request.method == 'POST':
-        form = ProjectForm(request.POST , request.FILES, instance=project)
-        if form.is_valid():
-            form.save()
-            return redirect('projects')
+#     project = Project.objects.get(id=pk)
+#     form = ProjectForm(instance=project)
+#     if request.method == 'POST':
+#         form = ProjectForm(request.POST , request.FILES, instance=project)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('projects')
 
-    context = {'form': form}
-    return render(request, "projects/project_form.html", context)
+#     context = {'form': form}
+#     return render(request, "projects/project_form.html", context)
 
-def deleteProject(request, pk):
-    project = Project.objects.get(id=pk)
-    if request.method == 'POST':
-        project.delete()
-        return redirect('projects')
+# def deleteProject(request, pk):
+#     project = Project.objects.get(id=pk)
+#     if request.method == 'POST':
+#         project.delete()
+#         return redirect('projects')
     
-    context = {'object': project}
-    return render(request, 'delete_template.html', context)
+#     context = {'object': project}
+#     return render(request, 'delete_template.html', context)
 
 
 
