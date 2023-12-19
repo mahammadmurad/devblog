@@ -10,7 +10,7 @@
               <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
               <h2 class="dev__name">{{profile.name}}</h2>
               <p class="dev__title">{{profile.short_intro}}</p>
-              <p class="dev__location">{{profile.short_intro}}</p>
+              <p class="dev__location">{{profile.location}}</p>
               <ul class="dev__social">
             {% if profile.social_github %}
                 <li>
@@ -67,8 +67,8 @@
             {% for project in profile.project_set.all %}
               <div class="column">
                 <div class="card project">
-                  <a href=""{% url 'project' project.id %}"" class="project">
-                    <img class="project__thumbnail" src="{{ profile.profile_image.url }}" alt="project thumbnail" />
+                  <a href="{% url 'project' project.id %}" class="project">
+                    <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{project.title}}</h3>
                       <p><a class="project__author" href="{% url 'user-profile' project.owner.id %}">By {{project.owner.name}}</a></p>
