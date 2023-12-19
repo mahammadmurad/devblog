@@ -5,7 +5,7 @@ from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 
 
 def loginUser(request):
@@ -55,7 +55,7 @@ def registerUser(request):
             messages.success(request, 'User account was created!')
 
             login(request, user)
-            return redirect('profiles')
+            return redirect('edit-account')
 
         else:
             messages.success(
