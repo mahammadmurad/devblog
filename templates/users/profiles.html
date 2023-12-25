@@ -9,7 +9,7 @@
         </div>
 
         <div class="hero-section__search">
-          <form class="form" action="{% url 'profiles' %}" method="post">
+          <form id='searchForm' class="form" action="{% url 'profiles' %}" method="post">
             {% csrf_token %}
             <div class="form__field">
               <label for="formInput#search">Search Developers </label>

@@ -20,9 +20,9 @@ def paginateProfiles(request, profiles, results):
     if leftIndex<1:
         leftIndex =1
 
-    rightIndex = (int(page)+6)
+    rightIndex = (int(page)+5)
     if rightIndex> paginator.num_pages:
-        rightIndex = paginator.num_pages
+        rightIndex = paginator.num_pages + 1
 
     custom_range = range(leftIndex, rightIndex)
     return custom_range, profiles

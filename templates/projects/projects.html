@@ -11,7 +11,7 @@
         </div>
 
         <div class="hero-section__search">
-          <form class="form" action="{% url 'projects' %}" method="post">
+          <form id='searchForm' class="form" action="{% url 'projects' %}" method="post">
               {% csrf_token %}
             <div class="form__field">
               <label for="formInput#search">Search By Projects </label>

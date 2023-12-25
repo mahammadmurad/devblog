@@ -22,7 +22,7 @@ def paginateProjects(request, projects, results):
 
     rightIndex = (int(page)+6)
     if rightIndex> paginator.num_pages:
-        rightIndex = paginator.num_pages
+        rightIndex = paginator.num_pages+1
 
     custom_range = range(leftIndex, rightIndex)
     return custom_range, projects
